@@ -52,6 +52,6 @@ func BenchmarkTwoSum(b *testing.B) {
 
 }
 
-// BenchmarkTwoSum/for-4         	25707518	        47.4 ns/op	      16 B/op	       1 allocs/op
-// BenchmarkTwoSum/hash-4        	 8463904	       140 ns/op	      16 B/op	       1 allocs/op
-// BenchmarkTwoSum/hashOnce-4    	 8723658	       135 ns/op	      16 B/op	       1 allocs/op
+// BenchmarkTwoSum/for-4         	21800482	        51.6 ns/op	      16 B/op	       1 allocs/op
+// BenchmarkTwoSum/hash-4        	 7672957	       152 ns/op	      16 B/op	       1 allocs/op
+// BenchmarkTwoSum/hashOnce-4    	17749783	        65.2 ns/op	      16 B/op	       1 allocs/op

@@ -38,6 +38,7 @@ func TwoSumByHashOnce(nums []int, target int) []int {
 		if index != 0 && index != i+1 {
 			result[0] = index - 1
 			result[1] = i
+			break
 		}
 		numsMap[num] = i + 1
 	}
