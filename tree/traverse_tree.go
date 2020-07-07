@@ -2,6 +2,8 @@ package tree
 
 import (
 	"fmt"
+
+	"my-leetcode/tools"
 )
 
 type TreeNode struct {
@@ -26,19 +28,18 @@ func PreorderNonRecursionTraversal(root *TreeNode) []int {
 		return nil
 	}
 	result := make([]int, 0)
-	stack := make([]*TreeNode, 0)
+	stack := tools.InitStack(tools.Interface)
 
-	for root != nil || len(stack) != 0 {
+	for root != nil || stack.Len() != 0 {
 		for root != nil {
 			// 前序遍历，所以先保留结果
 			result = append(result, root.Val)
-			stack = append(stack, root)
+			stack.Push(root)
 			root = root.Left
 		}
 		// pop
-		node := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		root = node.Right
+		currNode := stack.Pop().(*TreeNode)
+		root = currNode.Right
 	}
 	return result
 }
@@ -49,15 +50,14 @@ func InorderTraversal(root *TreeNode) []int {
 		return nil
 	}
 	result := make([]int,0)
-	stack := make([]*TreeNode,0)
+	stack := tools.InitStack(tools.Interface)
 
-	for root != nil || len(stack) != 0{
+	for root != nil || stack.Len() != 0{
 		for root != nil {
-			stack = append(stack, root)
+			stack.Push(root)
 			root = root.Left
 		}
-		currNode := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
+		currNode := stack.Pop().(*TreeNode)
 		result = append(result, currNode.Val)
 		root = currNode.Right
 	}
@@ -70,17 +70,17 @@ func PostOrderTraversal(root *TreeNode) []int {
 		return nil
 	}
 	result := make([]int, 0)
-	stack := make([]*TreeNode, 0)
+	stack := tools.InitStack(tools.Interface)
 
 	var lastVisit *TreeNode
-	for root != nil || len(stack) != 0{
+	for root != nil || stack.Len() != 0{
 		for root != nil{
-			stack = append(stack, root)
+			stack.Push(root)
 			root = root.Left
 		}
-		currNode := stack[len(stack)-1]
+		currNode := stack.Peek().(*TreeNode)
 		if currNode.Right == nil || currNode.Right == lastVisit{
-			stack = stack[:len(stack)-1]
+			stack.Pop()
 			result = append(result, currNode.Val)
 			lastVisit = currNode
 		}else{
