@@ -42,3 +42,50 @@ func PreorderNonRecursionTraversal(root *TreeNode) []int {
 	}
 	return result
 }
+
+// 中序非递归遍历
+func InorderTraversal(root *TreeNode) []int {
+	if root == nil{
+		return nil
+	}
+	result := make([]int,0)
+	stack := make([]*TreeNode,0)
+
+	for root != nil || len(stack) != 0{
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+		currNode := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		result = append(result, currNode.Val)
+		root = currNode.Right
+	}
+	return result
+}
+
+// 后序非递归遍历
+func PostOrderTraversal(root *TreeNode) []int {
+	if root == nil{
+		return nil
+	}
+	result := make([]int, 0)
+	stack := make([]*TreeNode, 0)
+
+	var lastVisit *TreeNode
+	for root != nil || len(stack) != 0{
+		for root != nil{
+			stack = append(stack, root)
+			root = root.Left
+		}
+		currNode := stack[len(stack)-1]
+		if currNode.Right == nil || currNode.Right == lastVisit{
+			stack = stack[:len(stack)-1]
+			result = append(result, currNode.Val)
+			lastVisit = currNode
+		}else{
+			root = currNode.Right
+		}
+	}
+	return result
+}

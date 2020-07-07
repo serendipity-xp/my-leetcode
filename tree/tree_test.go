@@ -1,8 +1,9 @@
 package tree
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTraversal(t *testing.T) {
@@ -35,8 +36,15 @@ func TestTraversal(t *testing.T) {
 		PreorderTraversal(treeObj)
 	})
 
-	t.Run("", func(t *testing.T) {
-		result := PreorderNonRecursionTraversal(treeObj)
-		fmt.Println(result)
+	t.Run("PreorderNonRecursionTraversal", func(t *testing.T) {
+		assert.Equal(t, PreorderNonRecursionTraversal(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
+	})
+
+	t.Run("InorderTraversal", func(t *testing.T) {
+		assert.Equal(t, InorderTraversal(treeObj), []int{1, 2, 3, 4, 5, 6, 7, 8})
+	})
+
+	t.Run("PostOrderTraversal", func(t *testing.T) {
+		assert.Equal(t, PostOrderTraversal(treeObj), []int{1, 2, 4, 3, 6, 8, 7, 5})
 	})
 }
