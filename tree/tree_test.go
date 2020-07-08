@@ -47,4 +47,12 @@ func TestTraversal(t *testing.T) {
 	t.Run("PostOrderTraversal", func(t *testing.T) {
 		assert.Equal(t, PostOrderTraversal(treeObj), []int{1, 2, 4, 3, 6, 8, 7, 5})
 	})
+
+	t.Run("DFS", func(t *testing.T) {
+		assert.Equal(t, DFSPreorderTraversal(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
+	})
+
+	t.Run("DivideAndConquer", func(t *testing.T) {
+		assert.Equal(t, DivideAndConquer(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
+	})
 }
