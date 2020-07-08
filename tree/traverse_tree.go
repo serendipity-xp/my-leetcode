@@ -89,3 +89,37 @@ func PostOrderTraversal(root *TreeNode) []int {
 	}
 	return result
 }
+
+
+// 深度优先遍历
+func DFSPreorderTraversal(root *TreeNode) []int  {
+	result := make([]int, 0)
+	dfs(root, &result)
+	return result
+}
+
+func dfs(root *TreeNode, result *[]int) {
+	if root == nil{
+		return
+	}
+	*result = append(*result, root.Val)
+	dfs(root.Left, result)
+	dfs(root.Right, result)
+}
+
+// 分治法
+func DivideAndConquer(root *TreeNode) []int  {
+	result := make([]int, 0)
+	if root == nil{
+		return result
+	}
+	// 分治
+	left := DivideAndConquer(root.Left)
+	right := DivideAndConquer(root.Right)
+	// 合并结果
+	result = append(result, root.Val)
+	result = append(result, left...)
+	result = append(result, right...)
+	return result
+
+}
