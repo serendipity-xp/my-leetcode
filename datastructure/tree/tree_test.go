@@ -48,11 +48,27 @@ func TestTraversal(t *testing.T) {
 		assert.Equal(t, PostOrderTraversal(treeObj), []int{1, 2, 4, 3, 6, 8, 7, 5})
 	})
 
-	t.Run("DFS", func(t *testing.T) {
+	t.Run("深度优先遍历", func(t *testing.T) {
 		assert.Equal(t, DFSPreorderTraversal(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
 	})
 
-	t.Run("DivideAndConquer", func(t *testing.T) {
+	t.Run("分治法", func(t *testing.T) {
 		assert.Equal(t, DivideAndConquer(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
+	})
+
+	t.Run("层次优先遍历", func(t *testing.T) {
+		assert.Equal(t, levelOrder(treeObj), [][]int{{5}, {3, 7}, {2, 4, 6, 8}, {1}})
+	})
+
+	t.Run("分治法遍历二叉树", func(t *testing.T) {
+		assert.Equal(t, perOrderTraversal(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
+	})
+
+	t.Run("最大深度", func(t *testing.T) {
+		assert.Equal(t, maxDepth(treeObj), 4)
+	})
+
+	t.Run("是否平衡二叉树", func(t *testing.T) {
+		assert.Equal(t, isBalanced(treeObj), true)
 	})
 }
