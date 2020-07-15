@@ -123,3 +123,17 @@ func DivideAndConquer(root *TreeNode) []int  {
 	return result
 
 }
+
+// BFS层次遍历
+// func LevelOrder(root *TreeNode) [][]int {
+// 	// 通过上一层的长度确定下一层的元素
+// 	result := make([][]int, 0)
+// 	if root == nil{
+// 		return result
+// 	}
+// 	queue := make([]*TreeNode,0)
+// 	queue = append(queue,root)
+// 	for len(queue)>0{
+//
+// 	}
+// }
