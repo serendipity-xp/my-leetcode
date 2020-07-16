@@ -60,6 +60,14 @@ func TestTraversal(t *testing.T) {
 		assert.Equal(t, levelOrder(treeObj), [][]int{{5}, {3, 7}, {2, 4, 6, 8}, {1}})
 	})
 
+	t.Run("反向层序优先遍历", func(t *testing.T) {
+		assert.Equal(t, levelOrderBottom(treeObj), [][]int{{1}, {2, 4, 6, 8}, {3, 7}, {5}})
+	})
+
+	t.Run("Z字形层序遍历", func(t *testing.T) {
+		assert.Equal(t, zigzagLevelOrder(treeObj), [][]int{{5}, {7, 3}, {2, 4, 6, 8}, {1}})
+	})
+
 	t.Run("分治法遍历二叉树", func(t *testing.T) {
 		assert.Equal(t, perOrderTraversal(treeObj), []int{5, 3, 2, 1, 4, 7, 6, 8})
 	})
@@ -70,5 +78,24 @@ func TestTraversal(t *testing.T) {
 
 	t.Run("是否平衡二叉树", func(t *testing.T) {
 		assert.Equal(t, isBalanced(treeObj), true)
+	})
+
+	t.Run("最大路径和", func(t *testing.T) {
+		assert.Equal(t, maxPathSum(treeObj), 27)
+	})
+
+	t.Run("最近公共祖先", func(t *testing.T) {
+		// p := &TreeNode{
+		// 	Val: 7,
+		// }
+		// q := &TreeNode{
+		// 	Val: 3,
+		// }
+		// result := &TreeNode{
+		// 	Val:   5,
+		// 	Left:  q,
+		// 	Right: p,
+		// }
+		// assert.Equal(t, lowestCommonAncestor(treeObj, p, q), result)
 	})
 }
