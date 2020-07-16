@@ -1,6 +1,7 @@
 package tree
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -97,5 +98,14 @@ func TestTraversal(t *testing.T) {
 		// 	Right: p,
 		// }
 		// assert.Equal(t, lowestCommonAncestor(treeObj, p, q), result)
+	})
+
+	t.Run("是否是有效的二分搜索树", func(t *testing.T) {
+		assert.Equal(t, isValidBST(treeObj), true)
+		assert.Equal(t, isValidBST2(treeObj), true)
+	})
+
+	t.Run("插入二叉树", func(t *testing.T) {
+		fmt.Println(insertIntoBST(treeObj,5))
 	})
 }
