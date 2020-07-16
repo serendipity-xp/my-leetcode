@@ -1,6 +1,7 @@
 package tree
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -136,7 +137,6 @@ func swap(nums []int, i, j int) {
 快排由于是原地交换所以没有合并过程 传入的索引是存在的索引（如：0、length-1 等），越界可能导致崩溃
 */
 
-
 // 最大深度
 func maxDepth(root *TreeNode) int {
 	// 递归返回条件
@@ -146,7 +146,7 @@ func maxDepth(root *TreeNode) int {
 	// 分治处理
 	left := maxDepth(root.Left)
 	right := maxDepth(root.Right)
-	if left == -1 || right == -1 || math.Abs(float64(left-right)) >1 {
+	if left == -1 || right == -1 || math.Abs(float64(left-right)) > 1 {
 		return -1
 	}
 	// 合并结果
@@ -157,16 +157,84 @@ func maxDepth(root *TreeNode) int {
 }
 
 // 判断是否是高度平衡的二叉树 (使用二义性的返回值：-1：代表不平衡； 非-1：代表树的高度）
-func isBalanced(root *TreeNode) bool{
-	if maxDepth(root) == -1{
+func isBalanced(root *TreeNode) bool {
+	if maxDepth(root) == -1 {
 		return false
 	}
 	return true
 }
 
-
 // 最大路径和
 type ResultType struct {
 	SinglePath int // 保存单边最大值
-	MaxPath int // 保存最大值（单边或者两个单边+根的值）
+	MaxPath    int // 保存最大值（单边或者两个单边+根的值）
+}
+
+func maxPathSum(root *TreeNode) int {
+	result := helper(root)
+	fmt.Println("单边最大值：", result.SinglePath)
+	return result.MaxPath
+}
+
+func helper(root *TreeNode) ResultType {
+	// check
+	if root == nil {
+		return ResultType{
+			SinglePath: 0,
+			MaxPath:    -(1 << 31),
+		}
+	}
+	// Divide
+	left := helper(root.Left)
+	right := helper(root.Right)
+
+	// Conquer
+	result := ResultType{}
+	// 求单边最大值
+	if left.SinglePath > right.SinglePath {
+		result.SinglePath = max(left.SinglePath+root.Val, 0)
+	} else {
+		result.SinglePath = max(right.SinglePath+root.Val, 0)
+	}
+
+	// 求两边加根最大值
+	maxPath := max(right.MaxPath, left.MaxPath)
+	result.MaxPath = max(maxPath, left.SinglePath+right.SinglePath+root.Val)
+	return result
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+// 最近公共祖先
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	// check
+	if root == nil {
+		return root
+	}
+	// 相等 直接返回root节点即可
+	if root == p || root == q {
+		return root
+	}
+	// Divide
+	left := lowestCommonAncestor(root.Left, p, q)
+	right := lowestCommonAncestor(root.Right, p, q)
+
+
+	// Conquer
+	// 左右两边都不为空，则根节点为祖先
+	if left != nil && right != nil {
+		return root
+	}
+	if left != nil {
+		return left
+	}
+	if right != nil {
+		return right
+	}
+	return nil
 }

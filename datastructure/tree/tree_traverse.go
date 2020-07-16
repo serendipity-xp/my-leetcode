@@ -122,7 +122,7 @@ DFS 深度搜索（从上到下） 和分治法区别：前者一般将最终结
 */
 
 // BFS层次遍历
-func levelOrder(root *TreeNode) [][]int {
+func levelOrderOld(root *TreeNode) [][]int {
 	result := make([][]int, 0)
 	if root == nil {
 		return result
