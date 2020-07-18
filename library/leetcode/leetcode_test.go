@@ -3,6 +3,8 @@ package leetcode
 import (
 	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_Leetcode(t *testing.T) {
@@ -20,7 +22,7 @@ func Test_Leetcode(t *testing.T) {
 			Next: &ListNode{
 				Val: 4,
 				Next: &ListNode{
-					Val: 3,
+					Val:  3,
 					Next: nil,
 				},
 			},
@@ -30,7 +32,7 @@ func Test_Leetcode(t *testing.T) {
 			Next: &ListNode{
 				Val: 6,
 				Next: &ListNode{
-					Val: 4,
+					Val:  4,
 					Next: nil,
 				},
 			},
@@ -39,11 +41,51 @@ func Test_Leetcode(t *testing.T) {
 		result := addTwoNumbersOld(l1, l2)
 		fmt.Println(result)
 		fmt.Println(result.Val)
-		if result.Next != nil{
+		if result.Next != nil {
 			fmt.Println(result.Next.Val)
-			if result.Next.Next != nil{
+			if result.Next.Next != nil {
 				fmt.Println(result.Next.Next.Val)
 			}
+		}
+	})
+
+	t.Run("交错字符串", func(t *testing.T) {
+		testCase := []struct {
+			s1, s2, s3 string
+			result     bool
+		}{
+			{"aabcc", "dbbca", "aadbbcbcac", true},
+			{"aabcc", "dbbca", "aadbbbaccc", false},
+			{"", "", "", true},
+			{"a", "", "a", true},
+		}
+		for _, tc := range testCase {
+			assert.Equal(t, isInterleave(tc.s1, tc.s2, tc.s3), tc.result)
+		}
+	})
+
+	t.Run("thinker", func(t *testing.T) {
+		sliceObj := make([]bool, 1)
+		sliceObj[0] = true
+	})
+
+	t.Run("搜索插入位置", func(t *testing.T) {
+		testCase := []struct {
+			input  []int
+			target int
+			output int
+		}{
+			{[]int{1, 3, 5, 6}, 5, 2},
+			{[]int{1, 3, 5, 6}, 2, 1},
+			{[]int{1, 3, 5, 6}, 7, 4},
+			{[]int{1, 3, 5, 6}, 0, 0},
+			{[]int{}, 2, 0},
+		}
+		for _, testcase := range testCase {
+			// 二分搜索
+			assert.Equal(t, searchInsert(testcase.input, testcase.target), testcase.output)
+			// 暴力破解
+			assert.Equal(t, searchInsertViolence(testcase.input, testcase.target), testcase.output)
 		}
 	})
 }

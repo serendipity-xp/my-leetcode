@@ -4,7 +4,7 @@
 # @Author  : serendipity-xp
 # @FileName: longest_substring.py
 # @Software: PyCharm
-# @GitHub  ：https://github.com/serendipity-xp
+# @GitHub  ：https://github.com/xuliangpan
 
 
 class Solution(object):
