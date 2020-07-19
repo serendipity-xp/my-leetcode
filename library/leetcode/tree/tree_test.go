@@ -57,7 +57,37 @@ func TestTree(t *testing.T) {
 			},
 		},
 	}
+	treeObj3 := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 3,
+			},
+			Right: &tree.TreeNode{
+				Val: 4,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 4,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+	}
 	t.Run("相同的树", func(t *testing.T) {
 		assert.Equal(t, isSameTree(treeObj1, treeObj2), false)
+	})
+
+	t.Run("对称二叉树", func(t *testing.T) {
+		assert.Equal(t, isSymmetric(treeObj1), false)
+		assert.Equal(t, isSymmetric(treeObj3), true)
+	})
+
+	t.Run("最大深度", func(t *testing.T) {
+		assert.Equal(t, maxDepth(treeObj1),4)
 	})
 }
