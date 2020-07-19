@@ -88,4 +88,18 @@ func Test_Leetcode(t *testing.T) {
 			assert.Equal(t, searchInsertViolence(testcase.input, testcase.target), testcase.output)
 		}
 	})
+
+	t.Run("戳气球", func(t *testing.T) {
+		testCase := []struct {
+			input  []int
+			output int
+		}{{
+			[]int{3, 1, 5, 8},
+			167,
+		},
+		}
+		for _, tc := range testCase {
+			assert.Equal(t, maxCoins(tc.input), tc.output)
+		}
+	})
 }
