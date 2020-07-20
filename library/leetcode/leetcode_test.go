@@ -16,6 +16,14 @@ func Test_Leetcode(t *testing.T) {
 		fmt.Println(result)
 	})
 
+	t.Run("两数之和", func(t *testing.T) {
+		numbers := []int{2, 7, 11, 15}
+		target := 9
+		fmt.Println(twoSum2(numbers, target))
+		fmt.Println(twoSumBinarySearch(numbers,target))
+		fmt.Println(twoSumDoublePointer(numbers,target))
+	})
+
 	t.Run("两数相加", func(t *testing.T) {
 		l1 := &ListNode{
 			Val: 2,
