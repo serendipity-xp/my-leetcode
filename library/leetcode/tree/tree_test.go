@@ -1,6 +1,7 @@
 package tree
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -89,5 +90,11 @@ func TestTree(t *testing.T) {
 
 	t.Run("最大深度", func(t *testing.T) {
 		assert.Equal(t, maxDepth(treeObj1),4)
+	})
+
+	t.Run("不同的二叉搜索树", func(t *testing.T) {
+		fmt.Println(generateTrees(8))
+		fmt.Println(len([]*tree.TreeNode{nil}))
+		fmt.Println(len(make([]*tree.TreeNode,0)))
 	})
 }
