@@ -20,8 +20,8 @@ func Test_Leetcode(t *testing.T) {
 		numbers := []int{2, 7, 11, 15}
 		target := 9
 		fmt.Println(twoSum2(numbers, target))
-		fmt.Println(twoSumBinarySearch(numbers,target))
-		fmt.Println(twoSumDoublePointer(numbers,target))
+		fmt.Println(twoSumBinarySearch(numbers, target))
+		fmt.Println(twoSumDoublePointer(numbers, target))
 	})
 
 	t.Run("两数相加", func(t *testing.T) {
@@ -108,6 +108,30 @@ func Test_Leetcode(t *testing.T) {
 		}
 		for _, tc := range testCase {
 			assert.Equal(t, maxCoins(tc.input), tc.output)
+		}
+	})
+
+	t.Run("旋转数组最小数字", func(t *testing.T) {
+		testCase := []struct {
+			input  []int
+			output int
+		}{
+			{
+				[]int{1, 3, 5},
+				1,
+			},
+			{
+				[]int{3, 4, 5, 1, 2},
+				1,
+			},
+			{
+				[]int{2, 2, 2, 0, 1},
+				0,
+			},
+		}
+		for _, tc := range testCase {
+			assert.Equal(t, minArray(tc.input), tc.output)
+			assert.Equal(t, minArrayBinarySearch(tc.input), tc.output)
 		}
 	})
 }
