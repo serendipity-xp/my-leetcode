@@ -134,4 +134,15 @@ func Test_Leetcode(t *testing.T) {
 			assert.Equal(t, minArrayBinarySearch(tc.input), tc.output)
 		}
 	})
+
+	t.Run("最小路径和", func(t *testing.T) {
+		grid := [][]int{
+			{1, 3, 4, 8},
+			{3, 2, 2, 4},
+			{5, 7, 1, 9},
+			{2, 3, 2, 3},
+		}
+		sum := minPathSum(grid)
+		fmt.Println(sum)
+	})
 }
