@@ -145,4 +145,27 @@ func Test_Leetcode(t *testing.T) {
 		sum := minPathSum(grid)
 		fmt.Println(sum)
 	})
+
+	t.Run("除数博弈", func(t *testing.T) {
+		testCase := []struct{
+			input int
+			output bool
+		}{
+			{2,true},
+			{3,false},
+			 {1,false},
+		}
+		for _,tc := range testCase{
+			assert.Equal(t,divisorGame(tc.input),tc.output)
+		}
+	})
+	t.Run("", func(t *testing.T) {
+		a := []int32{1,2}
+		for i,v := range a{
+			if i +1 <1{
+				return
+			}
+			fmt.Println(i,v)
+		}
+	})
 }
