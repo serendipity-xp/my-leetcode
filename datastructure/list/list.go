@@ -17,30 +17,30 @@ type ListNode struct {
 }
 
 func NewListNode(val ...int) *ListNode {
+	l := len(val)
+	if l == 0 {
+		return nil
+	}
 	ln := &ListNode{}
 	tempHead := ln
-	val = append(val, 9999)
-	for _, v := range val{
-		if v == 9999{
-			break
-		}
+	for i, v := range val{
 		tempHead.Val = v
-		tempHead.Next = &ListNode{}
-		tempHead = tempHead.Next
+		if i != l-1{
+			tempHead.Next = &ListNode{}
+			tempHead = tempHead.Next
+		}
 	}
 	return ln
 }
 
-
-func PrintListNode(head *ListNode)  {
+func PrintListNode(head *ListNode) {
 	result := make([]int, 0)
-	for head != nil{
+	for head != nil {
 		result = append(result, head.Val)
 		head = head.Next
 	}
 	fmt.Println(result)
 }
-
 
 /*
 	有序链表 删除重复元素
@@ -88,22 +88,22 @@ func deleteDuplicatesDoublePointer(head *ListNode) *ListNode {
 	front.Next = nil
 	return head
 }
-// 0ms  3.1MB
 
+// 0ms  3.1MB
 
 /*
 	给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字。
 */
 func deleteDuplicates2(head *ListNode) *ListNode {
-	if head == nil{
+	if head == nil {
 		return head
 	}
-	front,back := head, head.Next
-	for back != nil{
-		if front.Val == back.Val{
+	front, back := head, head.Next
+	for back != nil {
+		if front.Val == back.Val {
 			front = back.Next
 			back = front.Next
-		}else {
+		} else {
 			front.Next = back
 			front = back
 			back = back.Next
