@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"my-leetcode/datastructure/list"
 )
 
@@ -51,4 +52,19 @@ func TestReversePrint(t *testing.T)  {
 
 	node3 := reversePrint3(testCase)
 	fmt.Println(node3)
+}
+
+func TestGetDecimalValue(t *testing.T) {
+	listNode := list.NewListNode(1, 0, 1)
+	value := getDecimalValue(listNode)
+	assert.Equal(t, 5, value)
+
+	value = getDecimalValue2(listNode)
+	assert.Equal(t, 5, value)
+}
+
+func TestKthToLast(t *testing.T)  {
+	listNode := list.NewListNode(1, 2, 3)
+	result := kthToLast(listNode, 2)
+	fmt.Println(result)
 }
