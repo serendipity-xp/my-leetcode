@@ -19,6 +19,25 @@ func reverseList(head *list.ListNode) *list.ListNode {
 	return result
 }
 
+//  0ms 2.6MB
+func reverseList2(head *list.ListNode) *list.ListNode {
+	var result *list.ListNode
+	for head != nil{
+		result = &list.ListNode{Val: head.Val, Next: result}
+		head = head.Next
+	}
+	return result
+}
+
+func reverseList3(head *list.ListNode) *list.ListNode {
+	var result *list.ListNode
+	if head != nil{
+		result = reverseList3(head.Next)
+	}
+	result.Next = head
+	return result
+}
+
 
 // 0ms 4.7MB
 func reversePrint(head *list.ListNode) []int {

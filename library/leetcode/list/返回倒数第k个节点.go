@@ -12,13 +12,26 @@ import (
 func kthToLast(head *list.ListNode, k int) int {
 	fast := head
 	slow := head
-	for k > 0{
+	for k > 0 {
 		fast = fast.Next
 		k--
 	}
-	for fast != nil{
+	for fast != nil {
 		slow = slow.Next
 		fast = fast.Next
 	}
 	return slow.Val
+}
+
+func getKthFromEnd(head *list.ListNode, k int) *list.ListNode {
+	fast, slow := head, head
+	for k > 0 {
+		fast = fast.Next
+		k--
+	}
+	for fast != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	return slow
 }

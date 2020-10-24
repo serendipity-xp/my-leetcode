@@ -41,6 +41,12 @@ func TestDeleteNode(t *testing.T) {
 func TestReverseList(t *testing.T) {
 	node := reverseList(testCase)
 	list.PrintListNode(node)
+
+	node = reverseList2(testCase)
+	list.PrintListNode(node)
+
+	// node = reverseList3(testCase)
+	// list.PrintListNode(node)
 }
 
 func TestReversePrint(t *testing.T)  {
@@ -67,4 +73,16 @@ func TestKthToLast(t *testing.T)  {
 	listNode := list.NewListNode(1, 2, 3)
 	result := kthToLast(listNode, 2)
 	fmt.Println(result)
+}
+
+func TestGetKthFromEnd(t *testing.T) {
+	listNode := list.NewListNode(1, 2, 3, 4, 5)
+	node := getKthFromEnd(listNode, 2)
+	list.PrintListNode(node)
+}
+
+func TestMiddleNode(t *testing.T)  {
+	listNode := list.NewListNode(1, 2, 3, 4, 5)
+	node := middleNode(listNode)
+	assert.Equal(t, list.NewListNode(3, 4, 5), node)
 }
