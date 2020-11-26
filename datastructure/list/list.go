@@ -1,14 +1,14 @@
 package list
+/**
+ * @DateTime   : 2020/7/22 16:35
+ * @Author     : xulp
+ * @Description: list
+ **/
 
 import (
 	"fmt"
 )
 
-/**
-* @DateTime   : 2020/7/22 16:35
-* @Author     : xulp
-* @Description: list
-**/
 
 // Definition for singly-linked list.
 type ListNode struct {
