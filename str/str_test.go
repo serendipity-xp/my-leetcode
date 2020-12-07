@@ -19,6 +19,8 @@ func Test_str(t *testing.T) {
 }
 
 func TestStrRune(t *testing.T) {
-	var a  = rune("a"[0])
-	fmt.Println(a)
+
+	a := []int32("abc")
+	fmt.Println(a[0])
+
 }

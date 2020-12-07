@@ -97,4 +97,8 @@ func TestTree(t *testing.T) {
 		fmt.Println(len([]*tree.TreeNode{nil}))
 		fmt.Println(len(make([]*tree.TreeNode,0)))
 	})
+
+	t.Run("层序遍历", func(t *testing.T) {
+		fmt.Println(levelOrder(treeObj1))
+	})
 }
