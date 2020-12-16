@@ -8,6 +8,7 @@ package binary
 
 import (
 	"fmt"
+	"sort"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -142,4 +143,43 @@ func TestReserveBits(t *testing.T) {
 func TestRangeBitwiseAnd(t *testing.T) {
 	res := rangeBitwiseAnd(5, 7)
 	fmt.Println(res)
+	a := []int{-2, 0, -1, 4}
+	sort.Ints(a)
+	fmt.Println(a)
+}
+
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+	var ret [][]int
+	if len(nums) < 3 {
+		return ret
+	}
+	for i:=0;i<len(nums)-2;i++ {
+		if nums[i] > 0 || (i > 0 && nums[i] == nums[i-1]){
+			//处理第一个值重复的情况
+			continue
+		}
+		left := i+1
+		right := len(nums)-1
+		var innerRet []int
+		for left < right {
+			sum := nums[i] + nums[left] + nums[right]
+			if sum == 0 {
+				if len(innerRet) != 0 && nums[left] == innerRet[1] {
+					left++
+					continue
+				} else {
+					innerRet = []int{nums[i],nums[left],nums[right]}
+					ret = append(ret,innerRet)
+				}
+				left ++
+				right --
+			} else if sum < 0 {
+				left++
+			} else {
+				right --
+			}
+		}
+	}
+	return ret
 }
